@@ -53,12 +53,13 @@ class Dart2Js
     end
   end
 
-  def compile(minify = true)
+  def compile(minify = true, packages_file_path = nil)
     prepare_input
     prepare_output
     cmd = [ @dart2js_binary,
             minify ? ' -m ': nil,
             %Q{-o"#{output_path}"},
+            packages_file_path ? %Q{--packages #{packages_file_path}} : nil,
             input_path ].join(' ')
     process = IO.popen(cmd, 'r')
     @result = process.read
