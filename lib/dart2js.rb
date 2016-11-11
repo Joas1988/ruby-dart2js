@@ -59,7 +59,7 @@ class Dart2Js
     cmd = [ @dart2js_binary,
             minify ? ' -m ': nil,
             %Q{-o"#{output_path}"},
-            packages_file_path ? %Q{--packages #{packages_file_path}} : nil,
+            packages_file_path ? %Q{--packages "#{packages_file_path}"} : nil,
             input_path ].join(' ')
     process = IO.popen(cmd, 'r')
     @result = process.read
