@@ -59,6 +59,7 @@ class Dart2Js
     cmd = [ @dart2js_binary,
             minify ? ' -m ': nil,
             %Q{-o"#{output_path}"},
+            ' --enable-experimental-mirrors',
             packages_file_path ? %Q{--packages="#{packages_file_path}"} : nil,
             input_path ].join(' ')
     process = IO.popen(cmd, 'r')
